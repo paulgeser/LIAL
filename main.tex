@@ -1,0 +1,99 @@
+\documentclass[11pt, a4paper]{report} % Use 'report' for chapters and a Table of Contents
+
+% ====================================================================
+% 1. Preamble & Packages
+% ====================================================================
+
+% German language support
+\usepackage[ngerman]{babel}  % German language settings
+\usepackage[utf8]{inputenc}  % UTF-8 encoding for umlauts
+\usepackage[T1]{fontenc}     % Better font encoding
+
+% Essential Math Packages for Linear Algebra
+\usepackage{amsmath}   % Provides core math environments (e.g., align)
+\usepackage{amssymb}   % Provides math symbols (e.g., \mathbb{R}, \mathbb{C})
+\usepackage{mathtools} % Enhances amsmath
+
+% Document Layout and Appearance
+\usepackage[margin=1in]{geometry} % Sets comfortable margins
+\usepackage{fancyhdr}  % For customizing headers/footers (optional, but nice)
+\usepackage{graphicx}  % For including images/diagrams (if you add them later)
+
+% Hyperlinks and clickable Table of Contents
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,       % Links werden farbig dargestellt (nicht als Box)
+    linkcolor=blue,        % Farbe für interne Links (ToC, Referenzen)
+    urlcolor=blue,         % Farbe für URLs
+    citecolor=blue,        % Farbe für Zitate
+    pdftitle={Lineare Algebra - Zusammenfassung},
+    pdfauthor={Ihr Name},
+    pdfsubject={Lineare Algebra},
+    bookmarks=true,        % PDF Bookmarks aktivieren
+    bookmarksopen=true,    % Bookmarks im PDF Reader geöffnet anzeigen
+    pdfpagemode=UseOutlines % PDF öffnet mit Bookmarks-Panel
+}
+
+% Set up custom header/footer (optional)
+\pagestyle{fancy}
+\fancyhead[L]{Lineare Algebra - Zusammenfassung}
+\fancyhead[R]{\leftmark} % Prints the current chapter name
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Custom Command for Vectors (makes code cleaner)
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+% ====================================================================
+\begin{document}
+% ====================================================================
+
+% ----------------------------------------------------
+% 2. Deckblatt (Title Page)
+% ----------------------------------------------------
+\begin{titlepage}
+    \centering
+    \vspace*{1in}
+    {\Huge \textbf{Umfassende Zusammenfassung} \\ \vspace{0.5cm}}
+    {\Huge \textbf{Lineare Algebra} \par}
+    \vspace{2cm}
+
+    {\Large Eine Formel- und Konzeptsammlung \par}
+    \vspace{4cm}
+
+    {\Large Erstellt von: \textbf{Ihr Name} \par}
+    \vspace{0.5cm}
+    {\Large Datum: November 2025 \par}
+    \vfill
+
+    {\large Erstellt mit \LaTeX{} und \texttt{amsmath} \par}
+\end{titlepage}
+
+\clearpage % Start a new page
+
+% ----------------------------------------------------
+% 3. Table of Contents
+% ----------------------------------------------------
+\tableofcontents
+
+\clearpage
+
+% ----------------------------------------------------
+% 4. Chapters (The Core Content)
+% ----------------------------------------------------
+
+% Include all chapters from the chapters directory
+\include{chapters/01-Vektoren-Matrizen-Gleichungssysteme}
+\include{chapters/02-Gauss-Algorithmus}
+\include{chapters/03-LU-Zerlegung}
+\include{chapters/04-Gauss-Jordan-Elimination}
+\include{chapters/05-Vektorprodukt-Lineare-Abbildungen}
+\include{chapters/06-Orthogonale-Abbildungen-Homogene-Koordinaten}
+\include{chapters/07-Einfache-lineare-Regression}
+\include{chapters/08-Multiple-lineare-Regression}
+\include{chapters/09-Eigenwerte-und-Eigenvektoren-I}
+
+% ====================================================================
+\end{document}
+% ====================================================================

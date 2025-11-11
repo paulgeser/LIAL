@@ -1,0 +1,22 @@
+# LaTeX Auxiliary Files (MUST IGNORE)
+*.aux
+*.log
+*.lof
+*.lot
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.bbl
+*.blg
+*.nav
+*.snm
+*.vrb
+
+# Generated Files
+*.pdf          # Ignore the compiled PDF (unless you need to track it for releases)
+*.dvi
+*.ps
+
+build/
