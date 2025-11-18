@@ -1,0 +1,104 @@
+\chapter{SW 10: Positiv Definite Matrizen und Anwendungen}
+
+\section{Positiv definite Matrizen}
+
+\textbf{Definition} \\
+Eine symmetrische Matrix $A$ heisst \textbf{positiv definit}, wenn für jeden Vektor $x \neq 0$ gilt:
+$$
+x^T A x > 0
+$$
+Gilt nur $x^T A x \geq 0$, nennt man die Matrix \textbf{positiv semi-definit}.
+\vspace{1em}
+\par 
+\noindent
+\textbf{Regeln (Symmetrische Matrizen):}
+\par % Erzwingt einen Absatz nach "Regeln"
+\vspace{1em} % Fügt einen definierten Abstand ein (wie vorher)
+\noindent % Einzugsschutz
+\begin{tabular}[t]{@{} p{0.45\textwidth} | p{0.45\textwidth} @{}} 
+    
+    % LINKER BLOCK (Zelle 1)
+    \textbf{Standard Regeln}\par
+    \begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=0pt]
+        \item Die Matrix ist positiv definit, wenn alle \textbf{Eigenwerte $\lambda$ positiv} sind ($\lambda > 0$).
+        \item Für symmetrische $2 \times 2$ Matrix gilt:
+        $$ a > 0 \quad \text{und} \quad \det(A) = ad - b^2 > 0 $$
+        $A = \begin{pmatrix} a & b \\ b & d \end{pmatrix}$ 
+    \end{itemize}
+    & % <- Trennzeichen zwischen den Spalten
+    
+    % RECHTER BLOCK (Zelle 2)
+    \textbf{Sylvester-Kriterium (min 1 Krt.)}
+    \begin{enumerate}[itemsep=0pt, parsep=0pt, topsep=0pt]
+        \item Alle Pivots sind positiv.
+        \item Alle führenden Hauptminoren ($\det$ oben links) sind positiv.
+        \item Alle Eigenwerte $\lambda_i > 0$.
+        \item Die definierende Eigenschaft gilt: $x^T A x > 0$ für alle $x \neq 0$.
+        \item Es existiert eine Zerlegung $A = R^T R$ (mit $R$ mit unabhängigen Spalten).
+    \end{enumerate}
+    
+\end{tabular}
+\vspace{1em}
+
+
+\section{Diagonalisierung}
+
+\textbf{Voraussetzung:}
+Die $n \times n$-Matrix $A$ muss $n$ linear unabhängige Eigenvektoren besitzen.
+
+\begin{itemize}[itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item \textbf{Hauptformeln:}
+    $$ A = V \Lambda V^{-1} \quad \text{bzw.} \quad \Lambda = V^{-1} A V $$
+    
+    \item \textbf{Ableitung:} Die Grundgleichung $A x_i = \lambda_i x_i$ wird zur Matrixgleichung $AV = V\Lambda$.
+    
+    \item \textbf{Variablen:}
+    \begin{itemize}[itemsep=0pt, parsep=0pt, topsep=2pt]
+        \item $V$: Die **Eigenvektormatrix** (Spalten sind die Eigenvektoren $x_i$).
+        \item $\Lambda$: Die **Eigenwertmatrix** (Diagonalmatrix mit den Eigenwerten $\lambda_i$).
+    \end{itemize}
+    \[
+A \underbrace{[x_1, x_2]}_{\mathbf{V}} = [\lambda_1 \mathbf{x_1}, \lambda_2 \mathbf{x_2}] = \underbrace{[x_1, x_2]}_{\mathbf{V}} \underbrace{\begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix}}_{\mathbf{\Lambda}}
+\]
+\end{itemize}
+
+\section{Eigenschaften von Determinante (det) und Spur (tr)}
+
+Es gilt für beliebige Matrizen $\mathbf{A}(n \times n)$:
+\begin{itemize}[itemsep=0pt, parsep=0pt, topsep=2pt]
+    \item Die Spur der Matrix ist gleich der Summe der Eigenwerte.
+    \item Die Determinante der Matrix ist gleich dem Produkt der Eigenwerte.
+\end{itemize}
+
+Für beliebige Matrizen $\mathbf{A}(n \times n)$ und $\mathbf{B}(n \times n)$ und ein Skalar $c$ gilt:
+\begin{align*}
+\mathrm{tr}(\mathbf{A} + \mathbf{B}) &= \mathrm{tr}(\mathbf{A}) + \mathrm{tr}(\mathbf{B}) \\
+\mathrm{tr}(c\mathbf{A}) &= c \cdot \mathrm{tr}(\mathbf{A}) \\
+\det(c\mathbf{A}) &= c^n \det(\mathbf{A}) \\
+\mathrm{tr}(\mathbf{A}\mathbf{B}) &= \mathrm{tr}(\mathbf{B}\mathbf{A}) \\
+\det(\mathbf{A}\mathbf{B}) &= \det(\mathbf{B}\mathbf{A}) \\
+\det(\mathbf{A}\mathbf{B}) &= \det(\mathbf{A}) \det(\mathbf{B}) \\
+\det(\mathbf{A}^{-1}) &= (\det(\mathbf{A}))^{-1}
+\end{align*}
+
+\section{Ähnliche Matrizen}
+
+\subsection*{Definition & Kern-Eigenschaften}
+\begin{itemize}[itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item \textbf{Definition:} Zwei Matrizen $\mathbf{A}$ und $\mathbf{B}$ sind ähnlich, wenn eine invertierbare Matrix $\mathbf{M}$ existiert, sodass gilt:
+    $$ \mathbf{B} = \mathbf{M}^{-1}\mathbf{A}\mathbf{M} $$
+    \item \textbf{Theorem:} Ähnliche Matrizen haben immer die \textbf{selben Eigenwerte} ($\lambda$).
+    \item \textbf{Folgerung:} Haben dieselbe \textbf{Spur} ($\text{tr} = \sum \lambda$) und \textbf{Determinante} ($\det = \prod \lambda$).
+\end{itemize}
+
+\subsection*{Prüfung und Beispiel}
+\begin{itemize}[itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item Bei Diagonalmatrizen können die Eigenwerte $\lambda$ direkt von der Diagonale abgelesen werden.
+    \item \textbf{Beispiel-Matrizen} (alle ähnlich mit $\lambda_1=2, \lambda_2=4$):
+    $$ \begin{bmatrix} 2 & 3 \\ 0 & 4 \end{bmatrix}, \quad \begin{bmatrix} 2 & 0 \\ 0 & 4 \end{bmatrix}, \quad \begin{bmatrix} 0 & 2 \\ -4 & 6 \end{bmatrix} $$
+\end{itemize}
+
+
+\section{Potenzen von Matrizen}
+
+to do 

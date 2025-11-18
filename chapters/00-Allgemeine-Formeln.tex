@@ -1,0 +1,47 @@
+\chapter{Kompakt Formelsammlung}
+
+\begin{multicols*}{2}
+
+% --------------------------------------------------------
+\section{Allgemeine Grundlagen}
+% --------------------------------------------------------
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item \textbf{Mitternachtsformel} ($ax^2 + bx + c = 0$): \\
+    $ \displaystyle
+    x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+    $
+    \item \textbf{pq-Formel} (normiert: $x^2 + px + q = 0$): \\
+    $ \displaystyle
+    x_{1,2} = -\frac{p}{2} \pm \sqrt{\left(\frac{p}{2}\right)^2 - q}
+    $
+    \item \textbf{Skalarprodukt} ($x^T y$): \\
+    $ \displaystyle
+    \begin{pmatrix} x_1 & x_2 \end{pmatrix} \cdot 
+    \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = 
+    x_1 y_1 + x_2 y_2
+    $
+    \item \textbf{Norm (Länge):} $\|x\| = \sqrt{x^T x}$
+    \item \textbf{Winkel $\alpha$:} $\cos(\alpha) = \frac{x^T y}{\|x\| \cdot \|y\|}$
+    \item \textbf{Orthogonalität:} $x \perp y \iff x^T y = 0$
+    \item \textbf{Multiplikation} (Zeile $\cdot$ Spalte): \\
+    $ \displaystyle
+    \begin{pmatrix} a & b \\ c & d \end{pmatrix} 
+    \begin{pmatrix} e & f \\ g & h \end{pmatrix} = 
+    \begin{pmatrix} ae+bg & af+bh \\ ce+dg & cf+dh \end{pmatrix}
+    $
+    \item \textbf{Transponieren} ($(AB)^T = B^T A^T$): \\
+    $ \displaystyle
+    \begin{pmatrix} a & b \\ c & d \end{pmatrix}^T = 
+    \begin{pmatrix} a & c \\ b & d \end{pmatrix}
+    $
+    \item \textbf{Inverse} ($(AB)^{-1} = B^{-1} A^{-1}$): \\
+    $ \displaystyle
+    \begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = 
+    \frac{1}{ad-bc}
+    \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}
+    $
+    \item \textbf{Symmetrisch:} $A = A^T$
+    \item \textbf{Orthogonal ($Q$):} $Q^T = Q^{-1}$ (Spalten sind orthonormal).
+\end{itemize}
+
+\end{multicols*}

@@ -13,6 +13,8 @@
 \usepackage{amsmath}   % Provides core math environments (e.g., align)
 \usepackage{amssymb}   % Provides math symbols (e.g., \mathbb{R}, \mathbb{C})
 \usepackage{mathtools} % Enhances amsmath
+\usepackage{multicol}
+\usepackage{enumitem}
 
 % Document Layout and Appearance
 \usepackage[margin=1in]{geometry} % Sets comfortable margins
@@ -45,6 +47,12 @@
 % Custom Command for Vectors (makes code cleaner)
 \newcommand{\vect}[1]{\mathbf{#1}}
 
+% Remove "Kapitel" prefix from chapter titles and reduce spacing
+\usepackage{titlesec}
+\titleformat{\chapter}[hang]
+{\normalfont\huge\bfseries}{\thechapter}{1em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{10pt}
+
 % ====================================================================
 \begin{document}
 % ====================================================================
@@ -62,9 +70,7 @@
     {\Large Eine Formel- und Konzeptsammlung \par}
     \vspace{4cm}
 
-    {\Large Erstellt von: \textbf{Ihr Name} \par}
-    \vspace{0.5cm}
-    {\Large Datum: November 2025 \par}
+    {\Large Herbstsemester 2025 \par}
     \vfill
 
     {\large Erstellt mit \LaTeX{} und \texttt{amsmath} \par}
@@ -84,6 +90,7 @@
 % ----------------------------------------------------
 
 % Include all chapters from the chapters directory
+\include{chapters/00-Allgemeine-Formeln}
 \include{chapters/01-Vektoren-Matrizen-Gleichungssysteme}
 \include{chapters/02-Gauss-Algorithmus}
 \include{chapters/03-LU-Zerlegung}
@@ -93,6 +100,7 @@
 \include{chapters/07-Einfache-lineare-Regression}
 \include{chapters/08-Multiple-lineare-Regression}
 \include{chapters/09-Eigenwerte-und-Eigenvektoren-I}
+\include{chapters/10-Eigenwerte-und-Eigenvektoren-II}
 
 % ====================================================================
 \end{document}
