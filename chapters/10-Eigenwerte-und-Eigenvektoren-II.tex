@@ -1,4 +1,4 @@
-\chapter{SW 10: Positiv Definite Matrizen und Anwendungen}
+\chapter{Eigenwerte- und Eigenvektoren}
 
 \section{Positiv definite Matrizen}
 
@@ -98,7 +98,41 @@ Für beliebige Matrizen $\mathbf{A}(n \times n)$ und $\mathbf{B}(n \times n)$ un
     $$ \begin{bmatrix} 2 & 3 \\ 0 & 4 \end{bmatrix}, \quad \begin{bmatrix} 2 & 0 \\ 0 & 4 \end{bmatrix}, \quad \begin{bmatrix} 0 & 2 \\ -4 & 6 \end{bmatrix} $$
 \end{itemize}
 
+\subsection*{Nachweis der Ähnlichkeit durch Matrix M}
+
+\textbf{Ziel:} Finde eine invertierbare Matrix $\mathbf{M}$, die $\mathbf{B} = \mathbf{M}^{-1}\mathbf{A}\mathbf{M}$ erfüllt.
+
+\begin{enumerate}[itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item \textbf{Prüfbedingung aufstellen:} Nutze die äquivalente Gleichung:
+    $$ \mathbf{M}\mathbf{B} = \mathbf{A}\mathbf{M} $$
+    
+    \item \textbf{Transformationsmatrix $\mathbf{M}$ bestimmen (Heuristik):}
+    Wähle $\mathbf{M}$ basierend auf der visuellen Transformation (Vorzeichen, Vertauschung) zwischen $\mathbf{A}$ und $\mathbf{B}$. Beispielwahl: $\mathbf{M} = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$.
+    
+    \item \textbf{Gleichung verifizieren (Berechnung):} Die Multiplikation beider Seiten muss zum gleichen Ergebnis führen.
+    
+    \begin{align*}
+        \mathbf{MB} &= \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} \begin{bmatrix} 1 & -1 \\ -1 & 1 \end{bmatrix} = \begin{bmatrix} -1 & 1 \\ -1 & 1 \end{bmatrix} \\
+        \mathbf{AM} &= \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix} = \begin{bmatrix} -1 & 1 \\ -1 & 1 \end{bmatrix}
+    \end{align*}
+    
+    \textbf{Fazit:} Da $\mathbf{MB} = \mathbf{AM}$ gilt, ist die Ähnlichkeit nachgewiesen.
+\end{enumerate}
 
 \section{Potenzen von Matrizen}
 
-to do 
+\subsection*{Eigenschaften der Potenzierung}
+\begin{itemize}[itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item Falls $\mathbf{A}$ potenziert wird, bleiben die Eigenvektoren $x$ gleich, die Eigenwerte $\lambda$ werden aber potenziert ($\lambda \to \lambda^n$).
+    \item Für jeden EV $x$ zum EW $\lambda$ gilt:
+    $$ \mathbf{A}^n x = \lambda^n x $$
+\end{itemize}
+
+\subsection*{Effiziente Berechnung von $\mathbf{A}^n$}
+\begin{itemize}[itemsep=2pt, parsep=0pt, topsep=2pt]
+    \item \textbf{Methode:} Berechnung mittels Diagonalisierung $\mathbf{A} = \mathbf{V} \mathbf{\Lambda} \mathbf{V}^{-1}$.
+    \item \textbf{Endformel:}
+    $$ \mathbf{A}^n = \mathbf{V} \mathbf{\Lambda}^n \mathbf{V}^{-1} $$
+    \item \textbf{Vorteil (2x2):} Die Potenzierung von $\mathbf{\Lambda}$ erfolgt trivial auf der Diagonale:
+    $$ \mathbf{\Lambda}^n = \begin{pmatrix} \lambda_1^n & 0 \\ 0 & \lambda_2^n \end{pmatrix} $$
+\end{itemize}
