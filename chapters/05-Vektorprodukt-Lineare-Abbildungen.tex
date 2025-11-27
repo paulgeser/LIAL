@@ -1,3 +1,75 @@
 \chapter{Vektorprodukt und Lineare Abbildungen}
 
-Kommt bald...
+
+\section{Vektorprodukt (Kreuzprodukt)}
+
+\textbf{Definition} \\
+Das Vektorprodukt $u \times v$ zweier Vektoren $u, v \in \mathbb{R}^3$ ist ein Vektor $x$, der senkrecht (orthogonal) auf beiden Vektoren steht.
+
+\textbf{Berechnung} \\
+Für $u = \begin{pmatrix} u_1 \\ u_2 \\ u_3 \end{pmatrix}$ und $v = \begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}$ gilt:
+$$
+u \times v = \begin{pmatrix} u_2 v_3 - u_3 v_2 \\ u_3 v_1 - u_1 v_3 \\ u_1 v_2 - u_2 v_1 \end{pmatrix}
+$$
+Alternativ kann die Regel von Sarrus mit den Einheitsvektoren $e_1, e_2, e_3$ verwendet werden:
+$$
+u \times v = \det \begin{pmatrix} e_1 & e_2 & e_3 \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{pmatrix}
+$$
+
+\textbf{Eigenschaften}
+\begin{itemize}
+	\item \textbf{Länge:} $|u \times v| = |u| \cdot |v| \cdot \sin(\varphi)$, wobei $\varphi$ der eingeschlossene Winkel ist. Geometrisch entspricht dies der Fläche des von $u$ und $v$ aufgespannten Parallelogramms.
+	\item \textbf{Orthogonalität:} Das Produkt steht senkrecht auf $u$ und $v$ ($u \cdot (u \times v) = 0$).
+	\item \textbf{Antikommutativität:} $u \times v = -(v \times u)$.
+	\item \textbf{Parallelität:} Sind $u$ und $v$ parallel, ist $u \times v = 0$.
+\end{itemize}
+
+\section{Lineare Abbildungen}
+
+\textbf{Definition} \\
+Eine Abbildung $F: V \to W$ heisst \textbf{linear}, wenn für alle Vektoren $u, v$ und Skalare $s$ gilt:
+\begin{itemize}
+	\item $F(u + v) = F(u) + F(v)$ (Additivität)
+	\item $F(s \cdot u) = s \cdot F(u)$ (Homogenität)
+\end{itemize}
+
+\textbf{Matrix-Darstellung} \\
+Jede lineare Abbildung im $\mathbb{R}^n$ lässt sich durch eine Matrix $A$ darstellen.
+$$ F(x) = A \cdot x $$
+Dabei sind die Spalten der Matrix $A$ die Bilder der Einheitsvektoren $e_1, \dots, e_n$ unter der Abbildung.
+$$ A = \begin{pmatrix} | & | & & | \\ F(e_1) & F(e_2) & \dots & F(e_n) \\ | & | & & | \end{pmatrix} $$
+
+\section{Beispiele (2D-Transformationen)}
+
+Hier sind die Standardmatrizen für Transformationen im $\mathbb{R}^2$:
+
+\textbf{1. Skalierung} \\
+Streckung um Faktor $\lambda$ (zentrisch am Ursprung):
+$$ A = \begin{pmatrix} \lambda & 0 \\ 0 & \lambda \end{pmatrix} $$
+
+\textbf{2. Drehung} \\
+Drehung um den Ursprung um den Winkel $\varphi$ (gegen den Uhrzeigersinn):
+$$ R_{\varphi} = \begin{pmatrix} \cos \varphi & -\sin \varphi \\ \sin \varphi & \cos \varphi \end{pmatrix} $$
+
+\textbf{3. Spiegelung}
+\begin{itemize}
+	\item An der x-Achse: $ \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} $
+	\item An der y-Achse: $ \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} $
+	\item An einer Ursprungsgeraden mit Winkel $\varphi$:
+	$$ S_{\varphi} = \begin{pmatrix} \cos(2\varphi) & \sin(2\varphi) \\ \sin(2\varphi) & -\cos(2\varphi) \end{pmatrix} $$
+\end{itemize}
+
+\textbf{4. Scherung} \\
+Scherung entlang der x-Achse mit Faktor $s$:
+$$ A = \begin{pmatrix} 1 & s \\ 0 & 1 \end{pmatrix} $$
+
+\section{Zusammensetzung von Abbildungen}
+
+Werden mehrere lineare Abbildungen nacheinander ausgeführt, entspricht dies der Multiplikation ihrer Matrizen.
+
+\textbf{Reihenfolge} \\
+Sei $A$ die erste Abbildung ($x \to Ax$) und $B$ die zweite Abbildung ($y \to By$). Die Gesamtabbildung $C$ ist:
+$$ C = B \cdot A $$
+\textbf{Wichtig:} Die zuerst ausgeführte Abbildung steht in der Multiplikation rechts (nahe am Vektor $x$).
+$$ z = B(Ax) = (B \cdot A)x $$
+Die Matrixmultiplikation ist im Allgemeinen nicht kommutativ ($B \cdot A \neq A \cdot B$), daher ist die Reihenfolge entscheidend.

@@ -1,3 +1,83 @@
 \chapter{Gauss-Algorithmus}
 
-Kommt bald...
+\section{Lineare Gleichungssysteme (LGS)}
+
+\textbf{Definition} \\
+Ein Gleichungssystem besteht aus mehreren Gleichungen, die alle gemeinsam erfüllt sein müssen. Es heisst \textbf{linear}, wenn:
+\begin{itemize}
+	\item Variablen nur in der \textbf{ersten Potenz} vorkommen (kein $x^2$, $\sin(x)$ etc.).
+	\item Koeffizienten konstant sind (keine Variablen im Nenner oder Exponenten).
+\end{itemize}
+
+\textbf{Erweiterte Koeffizientenmatrix} \\
+Um Schreibarbeit zu sparen, notiert man das System $A \mathbf{x} = \mathbf{b}$ als Matrix. Man fügt die rechte Seite $\mathbf{b}$ als extra Spalte an die Matrix $A$ an:
+$$
+\begin{aligned}
+	2x + 3y &= 5 \\
+	4x - y &= 1
+\end{aligned}
+\quad \xrightarrow{\text{Matrix}} \quad
+\left(\begin{array}{cc|c}
+	2 & 3 & 5 \\
+	4 & -1 & 1
+\end{array}\right)
+$$
+
+\section{Gauss-Eliminationsverfahren}
+
+\textbf{Ziel: Zeilenstufenform} \\
+Das Verfahren formt das LGS so um, dass eine „Treppenstruktur“ entsteht, aus der man die Lösung leicht ablesen kann.
+\begin{itemize}
+	\item \textbf{Pivot (Leitkoeffizient):} Der erste Eintrag einer Zeile $\neq 0$.
+	\item Pivots müssen immer weiter rechts stehen als in der Zeile darüber.
+	\item Alle Einträge unterhalb der Pivots müssen $0$ sein.
+\end{itemize}
+
+\textbf{Erlaubte Operationen (Elementare Zeilenumformungen)} \\
+Diese ändern die Lösungsmenge nicht:
+\begin{enumerate}
+	\item \textbf{Vertauschen:} Zwei Zeilen vertauschen.
+	\item \textbf{Skalieren:} Eine Zeile mit einer Zahl $c \neq 0$ multiplizieren.
+	\item \textbf{Addieren:} Ein Vielfaches einer Zeile zu einer anderen Zeile addieren (Standard-Schritt, um Nullen zu erzeugen).
+\end{enumerate}
+
+\textbf{Lösungsweg}
+\begin{enumerate}
+	\item \textbf{Vorwärtselimination:} Bringe die Matrix durch Addition/Subtraktion von Zeilen in die Zeilenstufenform.
+	\item \textbf{Rückwärtseinsetzen:} Beginne bei der untersten Zeile, löse nach der Variablen auf und setze das Ergebnis schrittweise in die oberen Zeilen ein.
+\end{enumerate}
+
+\section{Beispiel: Gauss-Elimination}
+
+\textbf{Gegebenes System:}
+$$
+\begin{aligned}
+	x + y + 10z &= -6 \\
+	6x - y - z &= 4 \\
+	2x - y + z &= -2
+\end{aligned}
+$$
+
+\textbf{1. Erweiterte Koeffizientenmatrix aufstellen:}
+$$ \left(\begin{array}{rrr|r} 1 & 1 & 10 & -6 \\ 6 & -1 & -1 & 4 \\ 2 & -1 & 1 & -2 \end{array}\right) $$
+
+\textbf{2. Vorwärtselimination (Nullen erzeugen):}
+\begin{itemize}
+	\item \textit{Ziel:} Nullen unter der ersten 1 (Spalte 1).
+	\item $Z_2 \to Z_2 - 6 \cdot Z_1$
+	\item $Z_3 \to Z_3 - 2 \cdot Z_1$
+\end{itemize}
+$$ \to \left(\begin{array}{rrr|r} 1 & 1 & 10 & -6 \\ 0 & -7 & -61 & 40 \\ 0 & -3 & -19 & 10 \end{array}\right) $$
+\begin{itemize}
+	\item \textit{Ziel:} Null unter der -7 (Spalte 2). Um Brüche zu vermeiden, kann man z. B. $Z_2$ und $Z_3$ skalieren oder direkt $7 \cdot Z_3 - 3 \cdot Z_2$ rechnen.
+\end{itemize}
+$$ \to \left(\begin{array}{rrr|r} 1 & 1 & 10 & -6 \\ 0 & -7 & -61 & 40 \\ 0 & 0 & 50 & -50 \end{array}\right) \quad (\text{Zeilenstufenform erreicht}) $$
+
+\textbf{3. Rückwärtseinsetzen:}
+\begin{itemize}
+	\item \textbf{Aus Zeile 3:} $50z = -50 \implies \mathbf{z = -1}$
+	\item \textbf{In Zeile 2:} $-7y - 61(-1) = 40 \implies -7y + 61 = 40 \implies -7y = -21 \implies \mathbf{y = 3}$
+	\item \textbf{In Zeile 1:} $1x + 1(3) + 10(-1) = -6 \implies x + 3 - 10 = -6 \implies x - 7 = -6 \implies \mathbf{x = 1}$
+\end{itemize}
+
+\textbf{Lösungsmenge:} $\mathbb{L} = \{(1, 3, -1)\}$

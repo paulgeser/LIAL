@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4f671ef4-f234-4ebf-9195-ec7d78ac0bdf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/chapters/01-Vektoren-Matrizen-Gleichungssysteme.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/01-Vektoren-Matrizen-Gleichungssysteme.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/09-Eigenwerte-und-Eigenvektoren-I.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/09-Eigenwerte-und-Eigenvektoren-I.tex" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="35y6gHL7oJNp5gKnXTjnMdnKyH7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/paulg/Documents/HSLU-repos/LIAL",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4f671ef4-f234-4ebf-9195-ec7d78ac0bdf" name="Changes" comment="" />
+      <created>1764070073910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764070073910</updated>
+      <workItem from="1764070075056" duration="30000" />
+      <workItem from="1764070120053" duration="160000" />
+      <workItem from="1764070290687" duration="228000" />
+      <workItem from="1764070554173" duration="273000" />
+      <workItem from="1764070844207" duration="20000" />
+      <workItem from="1764070874945" duration="47000" />
+      <workItem from="1764070938870" duration="143000" />
+      <workItem from="1764071116634" duration="28000" />
+      <workItem from="1764071157174" duration="72000" />
+      <workItem from="1764071246497" duration="753000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

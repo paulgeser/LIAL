@@ -1,3 +1,171 @@
 \chapter{Vektoren, Matrizen und Gleichungssysteme}
 
-Kommt bald...
+\section{Vektoren}
+
+\textbf{Skalare und Vektoren} \\
+Man unterscheidet zwischen skalaren und vektoriellen Größen:
+\begin{itemize}
+	\item \textbf{Skalar:} Wird nur durch einen Zahlenwert definiert.
+	\begin{itemize}
+		\item Beispiele: Temperatur, Druck, Luftfeuchtigkeit.
+	\end{itemize}
+	\item \textbf{Vektor:} Wird durch einen Zahlenwert (Betrag) und eine Richtung definiert.
+	\begin{itemize}
+		\item Beispiele: Windgeschwindigkeit an einem Ort, Kraft auf einen Körper.
+	\end{itemize}
+\end{itemize}
+
+\textbf{Eigenschaften eines Vektors} \\
+Ein Vektor zeichnet sich durch folgende Merkmale aus:
+\begin{itemize}
+	\item Er hat eine \textbf{Länge} (Betrag).
+	\item Er hat eine \textbf{Richtung}.
+	\item Er lässt sich geometrisch als Pfeil darstellen.
+	\item Er kann arithmetisch durch Zahlen (Komponenten) beschrieben werden.
+\end{itemize}
+
+\textbf{Ortsvektoren}
+\begin{itemize}
+	\item Ein Ortsvektor hat den Ursprung des Koordinatensystems (Nullpunkt) als Anfangspunkt und verbindet diesen mit seinem gegebenen Endpunkt.
+	\item \textbf{Wichtig:} Ortsvektoren und ihre Endpunkte haben die identischen Koordinaten.
+\end{itemize}
+
+\textbf{Rechenregeln und Definitionen}
+\begin{itemize}
+	\item \textbf{Gleichheit:} Zwei Vektoren sind gleich, wenn sie die gleiche Länge und die gleiche Richtung besitzen.
+	\item \textbf{Verschiebbarkeit:} Vektoren lassen sich parallel verschieben, ohne dass sich der Vektor ändert (solange Länge und Richtung gleich bleiben).
+\end{itemize}
+
+\section{Rechenregeln für Vektoren}
+
+\textbf{Vektorraum-Axiome} \\
+Seien $\mathbf{a}, \mathbf{b}, \mathbf{c}$ Vektoren (beliebige Dimension), $\mathbf{0}$ der Nullvektor und $\lambda, \mu \in \mathbb{R}$ Skalare.
+Die Menge der Vektoren bildet zusammen mit den reellen Zahlen einen Vektorraum, wenn folgende Regeln gelten:
+
+\textbf{1. Addition:}
+\begin{enumerate}
+	\item $\mathbf{a} + \mathbf{b} = \mathbf{b} + \mathbf{a}$ \quad (Kommutativgesetz)
+	\item $\mathbf{a} + (\mathbf{b} + \mathbf{c}) = (\mathbf{a} + \mathbf{b}) + \mathbf{c}$ \quad (Assoziativgesetz)
+	\item $\mathbf{a} + \mathbf{0} = \mathbf{a}$ \quad (Existenz des neutralen Elements $\mathbf{0}$)
+	\item $\mathbf{a} + (-\mathbf{a}) = \mathbf{0}$ \quad (Existenz des Inversen $-\mathbf{a}$)
+\end{enumerate}
+
+\textbf{2. Skalarmultiplikation:}
+\begin{enumerate}
+	\setcounter{enumi}{4} % Damit die Nummerierung bei 5 weitergeht
+	\item $\lambda (\mathbf{a} + \mathbf{b}) = \lambda \mathbf{a} + \lambda \mathbf{b}$
+	\item $(\lambda + \mu) \mathbf{a} = \lambda \mathbf{a} + \mu \mathbf{a}$
+	\item $(\lambda \mu) \mathbf{a} = \lambda (\mu \mathbf{a}) = \mu (\lambda \mathbf{a})$
+	\item $1 \mathbf{a} = \mathbf{a}$
+\end{enumerate}
+
+\section{Schnittpunkte Geraden und Ebenen}
+
+\textbf{Definitionen}
+\begin{itemize}
+	\item \textbf{Gerade:} $g: \mathbf{r} = \mathbf{p} + \lambda \mathbf{u}$ \quad (Stützvektor $\mathbf{p}$, Richtungsvektor $\mathbf{u}$)
+	\item \textbf{Ebene:} $E: \mathbf{r} = \mathbf{p} + \lambda \mathbf{u} + \mu \mathbf{v}$ \quad (Spannvektoren $\mathbf{u}, \mathbf{v}$)
+\end{itemize}
+
+\textbf{Schnittpunkte berechnen}
+\begin{itemize}
+	\item \textbf{Ansatz:} Gleichsetzen der Parametergleichungen ($g = h$ oder $g = E$).
+	\item \textbf{Wichtig:} Für jedes Objekt unterschiedliche Parameter (z. B. $\lambda, \mu, \tau$) verwenden.
+	\item \textbf{Lösung:} Das entstehende LGS lösen und den Parameter in die Vektorgleichung einsetzen.
+\end{itemize}
+
+\section{Matrizen}
+
+\textbf{Definition} \\
+Eine Matrix $A$ vom Typ $m \times n$ besteht aus $m$ Zeilen und $n$ Spalten. Die Einträge werden mit $a_{i,j}$ bezeichnet (Zeile $i$, Spalte $j$).
+
+\textbf{Spezielle Matrizen und Begriffe} \\
+Die folgende Tabelle fasst wichtige Matrix-Typen und Eigenschaften zusammen:
+
+\begin{center}
+	\renewcommand{\arraystretch}{1.5} % Etwas mehr Abstand für Lesbarkeit
+	\begin{tabular}{|p{0.25\textwidth}|p{0.4\textwidth}|p{0.25\textwidth}|}
+		\hline
+		\textbf{Begriff} & \textbf{Erklärung / Eigenschaft} & \textbf{Beispiel} \\ \hline
+		\textbf{Quadratisch} & Gleiche Anzahl an Zeilen und Spalten ($m=n$). & $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ \\ \hline
+		\textbf{Diagonalmatrix} & Quadratisch, alle Einträge ausserhalb der Hauptdiagonale sind 0. & $\begin{pmatrix} 2 & 0 \\ 0 & 5 \end{pmatrix}$ \\ \hline
+		\textbf{Einheitsmatrix} $I$ & Diagonalmatrix mit nur Einsen auf der Diagonale. Neutrales Element ($A \cdot I = A$). & $\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$ \\ \hline
+		\textbf{Symmetrisch} & Matrix ist gleich ihrer Transponierten: $A = A^T$. (Spiegelsymmetrisch zur Diagonale). & $\begin{pmatrix} 1 & \mathbf{5} \\ \mathbf{5} & 3 \end{pmatrix}$ \\ \hline
+		\textbf{Transponiert} $A^T$ & Vertauschen von Zeilen und Spalten. Aus $m \times n$ wird $n \times m$. & $\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}^T \!\!= \begin{pmatrix} 1 & 3 \\ 2 & 4 \end{pmatrix}$ \\ \hline
+		\textbf{Invers} $A^{-1}$ & Kehrmatrix, sodass $A \cdot A^{-1} = I$. Existiert nur, wenn $\det(A) \neq 0$. & $(A A^{-1} = I)$ \\ \hline
+		\textbf{Orthogonal} & $A^T = A^{-1}$ bzw. $A^T A = I$. Die Spaltenvektoren sind zueinander orthogonal und haben Länge 1. & $\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ \\ \hline
+		\textbf{Zeilenstufenform} & Durch Gauss-Elimination erzeugt. Nullen unterhalb der Stufen. & $\begin{pmatrix} 1 & 2 & 3 \\ 0 & 4 & 5 \\ 0 & 0 & 0 \end{pmatrix}$ \\ \hline
+	\end{tabular}
+\end{center}
+
+\section{Lineare Gleichungssysteme (LGS)}
+
+\textbf{Definition} \\
+Ein LGS besteht aus mehreren linearen Gleichungen mit mehreren Unbekannten.
+$$ A \mathbf{x} = \mathbf{b} $$
+
+\textbf{Lösungsmethoden}
+\begin{itemize}
+	\item \textbf{Einsetzungsverfahren:} Eine Gleichung auflösen und in die andere einsetzen.
+	\item \textbf{Gleichsetzungsverfahren:} Beide Gleichungen nach einer Variablen auflösen und gleichsetzen.
+	\item \textbf{Additions-/Eliminationsverfahren (Gauss):} Systematische Elimination von Variablen.
+\end{itemize}
+
+\textbf{Erweiterte Koeffizientenmatrix} \\
+Man schreibt die Koeffizienten $A$ und die rechte Seite $\mathbf{b}$ in eine gemeinsame Matrix $(A|\mathbf{b})$. Zeilenoperationen (z. B. Zeile 2 minus Zeile 1) ändern die Lösungsmenge nicht.
+
+\textit{Beispiel:}
+$$
+\begin{aligned}
+	s - 160t &= 0 \\
+	s - 120t &= 100
+\end{aligned}
+\quad \xrightarrow{\text{Matrixform}} \quad
+\left(\begin{array}{cc|c}
+	1 & -160 & 0 \\
+	1 & -120 & 100
+\end{array}\right)
+$$
+Ziel ist die \textbf{Zeilenstufenform} (Nullen unter der Diagonalen), um die Lösung durch \textbf{Rückwärtseinsetzen} zu finden.
+
+\textbf{Lösungsfälle}
+Ein lineares Gleichungssystem hat entweder:
+\begin{itemize}
+	\item \textbf{Genau eine Lösung} (Schnittpunkt).
+	\item \textbf{Keine Lösung} (Widerspruch, z. B. parallele Geraden).
+	\item \textbf{Unendlich viele Lösungen} (Identische Geraden).
+\end{itemize}
+
+\section{Skalarprodukt}
+
+\textbf{Definitionen} \\
+Das Skalarprodukt (Symbol $\cdot$) verknüpft zwei Vektoren zu einer reellen Zahl (Skalar).
+\begin{itemize}
+	\item \textbf{Geometrisch:} $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}| \cdot |\mathbf{b}| \cdot \cos(\phi)$ \\
+	(wobei $\phi$ der Winkel zwischen den Vektoren ist).
+	\item \textbf{Algebraisch (in Koordinaten):} $\mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2 + \dots + a_n b_n$
+\end{itemize}
+
+\textbf{Wichtige Anwendungen}
+\begin{itemize}
+	\item \textbf{Länge (Betrag) eines Vektors:} \\
+	Das Skalarprodukt eines Vektors mit sich selbst ergibt das Quadrat seiner Länge.
+	$$ |\mathbf{a}| = \sqrt{\mathbf{a} \cdot \mathbf{a}} = \sqrt{a_1^2 + a_2^2} $$
+	\item \textbf{Orthogonalität (Senkrecht):} \\
+	Zwei Vektoren ($\neq \mathbf{0}$) stehen genau dann senkrecht aufeinander ($\mathbf{a} \perp \mathbf{b}$), wenn ihr Skalarprodukt \textbf{Null} ist.
+	$$ \mathbf{a} \cdot \mathbf{b} = 0 \iff \mathbf{a} \perp \mathbf{b} $$
+	\item \textbf{Winkelberechnung:} \\
+	Durch Umstellen der geometrischen Definition:
+	$$ \cos(\phi) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| \cdot |\mathbf{b}|} $$
+	\item \textbf{Normierung (Einheitsvektor):} \\
+	Um einen Vektor auf die Länge 1 zu bringen (Einheitsvektor $\mathbf{e}$), teilt man ihn durch seinen Betrag:
+	$$ \mathbf{e} = \frac{\mathbf{a}}{|\mathbf{a}|} $$
+\end{itemize}
+
+\textbf{Rechenregeln}
+Für Vektoren $\mathbf{a}, \mathbf{b}, \mathbf{c}$ und Skalar $\lambda \in \mathbb{R}$ gilt:
+\begin{itemize}
+	\item $\mathbf{a} \cdot \mathbf{b} = \mathbf{b} \cdot \mathbf{a}$ (Kommutativgesetz)
+	\item $\mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) = \mathbf{a} \cdot \mathbf{b} + \mathbf{a} \cdot \mathbf{c}$ (Distributivgesetz)
+	\item $\lambda (\mathbf{a} \cdot \mathbf{b}) = (\lambda \mathbf{a}) \cdot \mathbf{b} = \mathbf{a} \cdot (\lambda \mathbf{b})$ (Assoziativ mit Skalar)
+\end{itemize}

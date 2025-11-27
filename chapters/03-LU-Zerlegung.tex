@@ -1,3 +1,112 @@
 \chapter{LU-Zerlegung}
 
-Kommt bald...
+\section{Invertierbare Matrizen}
+
+\textbf{Definition} \\
+Eine quadratische $n \times n$-Matrix $A$ heisst \textbf{invertierbar}, \textbf{regulär} oder \textbf{nichtsingulär}, wenn eine $n \times n$-Matrix $B$ existiert, sodass gilt:
+$$
+A \cdot B = B \cdot A = E
+$$
+Man nennt $B$ die zu $A$ inverse Matrix und bezeichnet sie mit $B = A^{-1}$.
+
+\textbf{Eigenschaften}
+\begin{itemize}
+	\item Ist $A$ invertierbar, hat das Gleichungssystem $Ax = b$ für jedes $b$ eine eindeutige Lösung ($x = A^{-1}b$).
+	\item Das Inverse eines Produkts kehrt die Reihenfolge um: $(AB)^{-1} = B^{-1} A^{-1}$.
+\end{itemize}
+
+\section{Permutationsmatrix}
+
+\textbf{Definition} \\
+Eine Permutationsmatrix $P$ ist eine quadratische Matrix, bei der jede Zeile und jede Spalte genau eine Eins enthält, wobei alle anderen Elemente Null sind. Sie entsteht aus der Einheitsmatrix durch Vertauschen von Zeilen.
+
+\textbf{Wirkung}
+\begin{itemize}
+	\item \textbf{Multiplikation von links ($PA$):} Vertauscht die Zeilen von $A$.
+	\item \textbf{Multiplikation von rechts ($AP$):} Vertauscht die Spalten von $A$.
+\end{itemize}
+
+\textbf{Beispiel (Zeilentausch)} \\
+Um bei einer $3 \times 3$-Matrix die 1. und 2. Zeile zu vertauschen, wird die Einheitsmatrix entsprechend umgeformt (Tausch der 1. und 2. Zeile von $E$):
+$$
+P = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}
+$$
+Angewandt auf eine Matrix $A$:
+$$
+P \cdot A = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} \cdot \begin{pmatrix} 0 & 1 & 1 \\ 1 & 2 & 1 \\ 2 & 7 & 9 \end{pmatrix} = \begin{pmatrix} 1 & 2 & 1 \\ 0 & 1 & 1 \\ 2 & 7 & 9 \end{pmatrix}
+$$
+Hier wurde die erste Zeile $(0, 1, 1)$ mit der zweiten Zeile $(1, 2, 1)$ vertauscht.
+
+\section{LR-Zerlegung (LU Decomposition)}
+
+\textbf{Konzept} \\
+Die LR-Zerlegung faktorisiert eine Matrix $A$ in das Produkt einer unteren Dreiecksmatrix $L$ (Lower) und einer oberen Dreiecksmatrix $U$ (Upper).
+$$
+A = L \cdot U
+$$
+\begin{itemize}
+	\item \textbf{$U$ (Upper):} Ist die Zeilenstufenform von $A$, die durch Gauss-Elimination entsteht.
+	\item \textbf{$L$ (Lower):} Ist eine untere Dreiecksmatrix mit Einsen auf der Diagonalen. Sie enthält die Multiplikatoren der Eliminationsschritte ($l_{ij}$ an der Position $i$-te Zeile, $j$-te Spalte).
+\end{itemize}
+
+\textbf{Zerlegung mit Zeilentausch} \\
+Müssen während der Elimination Zeilen vertauscht werden (Pivotisierung), wird die Matrix $PA$ zerlegt:
+$$
+P \cdot A = L \cdot U
+$$
+
+\section{Lösen eines LGS mittels LR-Zerlegung}
+
+Das Verfahren nutzt die Zerlegung $A = LU$, um das System $Ax = b$ durch zwei einfachere Dreieckssysteme zu lösen. Dies ist besonders effizient, wenn mehrere Gleichungssysteme mit derselben Matrix $A$, aber unterschiedlichen Vektoren $b$ gelöst werden müssen.
+
+\textbf{Vorgehen}
+Das System $Ax = b$ wird umgeformt zu $L(Ux) = b$. Man substituiert $Ux = y$ und löst in zwei Schritten:
+\begin{enumerate}
+	\item \textbf{Vorwärtseinsetzen:} Löse $L y = b$ nach $y$ auf.
+	\item \textbf{Rückwärtseinsetzen:} Löse $U x = y$ nach $x$ auf.
+\end{enumerate}
+
+\textbf{1. Vorwärtseinsetzen ($Ly=b$)} \\
+Da $L$ eine untere Dreiecksmatrix ist, lassen sich die Unbekannten $y$ von oben nach unten berechnen.
+Beispiel für $3 \times 3$:
+$$
+\begin{pmatrix} 1 & 0 & 0 \\ l_{21} & 1 & 0 \\ l_{31} & l_{32} & 1 \end{pmatrix} \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} = \begin{pmatrix} b_1 \\ b_2 \\ b_3 \end{pmatrix}
+$$
+Daraus ergeben sich direkt die Gleichungen:
+\begin{align*}
+	y_1 &= b_1 \\
+	y_2 &= b_2 - l_{21}y_1 \\
+	y_3 &= b_3 - l_{31}y_1 - l_{32}y_2
+\end{align*}
+
+\textbf{2. Rückwärtseinsetzen ($Ux=y$)} \\
+Da $U$ eine obere Dreiecksmatrix ist, lassen sich die Unbekannten $x$ von unten nach oben berechnen.
+Beispiel für $3 \times 3$:
+$$
+\begin{pmatrix} u_{11} & u_{12} & u_{13} \\ 0 & u_{22} & u_{23} \\ 0 & 0 & u_{33} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix}
+$$
+Daraus ergeben sich die Gleichungen (Auflösen nach $x_3$, dann $x_2$, dann $x_1$):
+\begin{align*}
+	x_3 &= \frac{y_3}{u_{33}} \\
+	x_2 &= \frac{y_2 - u_{23}x_3}{u_{22}} \\
+	x_1 &= \frac{y_1 - u_{12}x_2 - u_{13}x_3}{u_{11}}
+\end{align*}
+
+\textbf{Konkretes Beispiel ($2 \times 2$)} \\
+Gegeben sei das System $Ax = b$ mit $A = \begin{pmatrix} 1 & 2 \\ 4 & 9 \end{pmatrix}$ und $b = \begin{pmatrix} 5 \\ 21 \end{pmatrix}$. \\
+Die LR-Zerlegung von $A$ ergibt:
+$L = \begin{pmatrix} 1 & 0 \\ 4 & 1 \end{pmatrix}, \quad U = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}$.
+
+\begin{itemize}
+	\item \textbf{Schritt 1 ($Ly = b$):}
+	$$ \begin{pmatrix} 1 & 0 \\ 4 & 1 \end{pmatrix} \begin{pmatrix} y_1 \\ y_2 \end{pmatrix} = \begin{pmatrix} 5 \\ 21 \end{pmatrix} $$
+	$$ y_1 = 5 $$
+	$$ 4 \cdot 5 + y_2 = 21 \implies y_2 = 1 $$
+	$\implies y = \begin{pmatrix} 5 \\ 1 \end{pmatrix}$
+	
+	\item \textbf{Schritt 2 ($Ux = y$):}
+	$$ \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \begin{pmatrix} 5 \\ 1 \end{pmatrix} $$
+	$$ x_2 = 1 $$
+	$$ x_1 + 2 \cdot 1 = 5 \implies x_1 = 3 $$
+	$\implies \textbf{Lösung: } x = \begin{pmatrix} 3 \\ 1 \end{pmatrix}$
+\end{itemize}

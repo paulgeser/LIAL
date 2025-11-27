@@ -1,3 +1,79 @@
 \chapter{Gauss-Jordan-Elimination}
 
-Kommt bald...
+\section{Gauss-Jordan-Algorithmus}
+
+\textbf{Konzept} \\
+Das Gauss-Jordan-Verfahren ist eine Erweiterung des Gauss-Eliminationsverfahrens. Ziel ist es, die Matrix nicht nur in die Zeilenstufenform, sondern in die \textbf{reduzierte Zeilenstufenform} (Diagonalmatrix, idealerweise Einheitsmatrix) zu bringen.
+
+\textbf{Vorgehen}
+\begin{enumerate}
+	\item Matrix in Zeilenstufenform bringen (Gauss-Elimination).
+	\item Von \textbf{rechts nach links} und von \textbf{unten nach oben} Nullen oberhalb der Pivotelemente erzeugen.
+	\item Pivotelemente durch Division auf $1$ normieren.
+\end{enumerate}
+
+\textbf{Anwendung}
+\begin{itemize}
+	\item Direktes Ablesen der Lösungen ohne Rückwärtseinsetzen.
+	\item Simultanes Lösen mehrerer Gleichungssysteme ($Ax = a, Ax = b, \dots$) durch Erweiterung der Matrix.
+	\item Berechnung der inversen Matrix.
+\end{itemize}
+
+\section{Inverse Matrix}
+
+\textbf{Definition} \\
+Eine quadratische Matrix $A$ ist invertierbar, wenn eine Matrix $A^{-1}$ existiert, für die gilt:
+$$ A \cdot A^{-1} = I \quad \text{und} \quad A^{-1} \cdot A = I $$
+wobei $I$ die Einheitsmatrix ist.
+
+\textbf{Berechnung mittels Gauss-Jordan} \\
+Man schreibt die Matrix $A$ und die Einheitsmatrix $I$ nebeneinander: $(A \mid I)$. Durch Anwendung des Gauss-Jordan-Algorithmus wird die linke Seite zur Einheitsmatrix umgeformt. Die rechte Seite wird dabei automatisch zur Inversen.
+$$
+(A \mid I) \xrightarrow{\text{Gauss-Jordan}} (I \mid A^{-1})
+$$
+
+\section{Determinante}
+
+\textbf{Definition und Bedeutung} \\
+Die Determinante ist eine Kennzahl (Skalar) für quadratische Matrizen.
+\begin{itemize}
+	\item $\det(A) \neq 0 \iff A$ ist regulär (invertierbar).
+	\item $\det(A) = 0 \iff A$ ist singulär (nicht invertierbar).
+	\item Geometrisch entspricht sie im $\mathbb{R}^2$ der Fläche und im $\mathbb{R}^3$ dem Volumen (Spatprodukt).
+\end{itemize}
+
+\textbf{Berechnung}
+\begin{itemize}
+	\item \textbf{$2 \times 2$ Matrix:}
+	$$ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \implies \det(A) = ad - bc $$
+	
+	\item \textbf{$3 \times 3$ Matrix (Regel von Sarrus):} \\
+	Für $A = \begin{pmatrix} u_1 & v_1 & w_1 \\ u_2 & v_2 & w_2 \\ u_3 & v_3 & w_3 \end{pmatrix}$ gilt:
+	$$ \det(A) = (u_1 v_2 w_3 + v_1 w_2 u_3 + w_1 u_2 v_3) - (u_3 v_2 w_1 + v_3 w_2 u_1 + w_3 u_2 v_1) $$
+	
+	\item \textbf{Dreiecksmatrizen:} \\
+	Die Determinante ist das Produkt der Diagonalelemente.
+\end{itemize}
+
+\textbf{Rechenregeln für Determinanten}
+\begin{itemize}
+	\item \textbf{Zeilenvertauschung:} Das Vorzeichen ändert sich ($\det_{neu} = - \det_{alt}$).
+	\item \textbf{Zeilenmultiplikation:} Wird eine Zeile mit Faktor $k$ multipliziert, ändert sich die Determinante um Faktor $k$.
+	\item \textbf{Zeilenaddition:} Die Addition des Vielfachen einer Zeile zu einer anderen ändert die Determinante \textbf{nicht}.
+	\item \textbf{Transposition:} $\det(A) = \det(A^T)$.
+\end{itemize}
+
+\section{Cramersche Regel}
+
+Ein Verfahren zum Lösen linearer Gleichungssysteme $Ax = b$, wenn $\det(A) \neq 0$.
+
+\textbf{Formel} \\
+Die Lösung für die Unbekannte $x_i$ ist:
+$$
+x_i = \frac{\det(A_i)}{\det(A)}
+$$
+Dabei ist $A_i$ die Matrix, die entsteht, wenn man die $i$-te Spalte von $A$ durch den Vektor $b$ ersetzt.
+
+\textbf{Beispiel ($2 \times 2$)}
+$$ x = \frac{D_x}{D}, \quad y = \frac{D_y}{D} $$
+mit $D = \det(A)$, $D_x = \det(b, \text{Spalte}_2)$, $D_y = \det(\text{Spalte}_1, b)$.

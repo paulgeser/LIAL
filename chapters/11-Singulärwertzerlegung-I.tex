@@ -1,0 +1,48 @@
+\chapter{Singulärwertzerlegung-I}
+
+\section{Definition}
+
+\textbf{Satz der Singulärwertzerlegung} \\
+Die Singulärwertzerlegung (SVD) zerlegt jede beliebige $m \times n$-Matrix $A$ in ein Produkt von drei speziellen Matrizen[cite: 66]:
+$$
+A = U \Sigma V^T
+$$
+Die Eigenschaften der Komponenten sind:
+\begin{itemize}
+	\item \textbf{$U$:} Eine orthogonale $m \times m$-Matrix ($U^T U = I$, $U^{-1} = U^T$)[cite: 69]. Die Spalten von $U$ heissen \textbf{Links-Singulärvektoren}[cite: 268].
+	\item \textbf{$\Sigma$:} Eine $m \times n$-Diagonalmatrix. Die Einträge auf der Diagonalen heissen \textbf{Singulärwerte} $\sigma_i$[cite: 70]. Sie sind positiv und der Grösse nach geordnet ($\sigma_1 \ge \sigma_2 \ge \dots \ge \sigma_n \ge 0$)[cite: 152].
+	\item \textbf{$V$:} Eine orthogonale $n \times n$-Matrix ($V^T V = I$, $V^{-1} = V^T$)[cite: 71]. Die Spalten von $V$ heissen \textbf{Rechts-Singulärvektoren}[cite: 268].
+\end{itemize}
+
+\textbf{Zusammenhang mit symmetrischen Matrizen} \\
+Die Berechnung der SVD basiert auf den Eigenwerten und Eigenvektoren der symmetrischen Matrizen $A^T A$ und $A A^T$[cite: 42]:
+\begin{itemize}
+	\item $A^T A = V \Sigma^2 V^T$: Die Matrix $A^T A$ liefert die Rechts-Singulärvektoren $V$ und die Quadrate der Singulärwerte[cite: 270, 271].
+	\item $A A^T = U \Sigma^2 U^T$: Die Matrix $A A^T$ liefert die Links-Singulärvektoren $U$[cite: 272, 273].
+\end{itemize}
+
+\section{Berechnung}
+
+Die Bestimmung der SVD erfolgt typischerweise in folgenden Schritten:
+
+\textbf{1. Berechnung von $V$ und $\Sigma$}
+\begin{enumerate}
+	\item Berechne die symmetrische Matrix $A^T A$[cite: 269].
+	\item Bestimme die Eigenwerte $\lambda_i$ von $A^T A$ durch Lösen der charakteristischen Gleichung $\det(A^T A - \lambda I) = 0$[cite: 287].
+	\item Die \textbf{Singulärwerte} sind die Wurzeln dieser Eigenwerte: $\sigma_i = \sqrt{\lambda_i}$[cite: 280, 288]. Damit ist die Matrix $\Sigma$ bestimmt.
+	\item Bestimme die zugehörigen normierten Eigenvektoren. Diese bilden die Spalten $v_i$ der Matrix $V$[cite: 281].
+\end{enumerate}
+
+\textbf{2. Berechnung von $U$}
+Um die Matrix $U$ zu bestimmen, nutzt man die Beziehung $A V = U \Sigma$, was spaltenweise $A v_i = \sigma_i u_i$ entspricht[cite: 321, 332].
+\begin{itemize}
+	\item Für jeden Singulärwert $\sigma_i > 0$ berechnet sich der Vektor $u_i$ durch:
+	$$
+	u_i = \frac{1}{\sigma_i} A v_i
+	$$
+	Dies stellt sicher, dass die Vorzeichen korrekt sind[cite: 318].
+	\item Falls $A$ nicht quadratisch ist oder $\sigma_i = 0$, müssen die fehlenden Vektoren $u_i$ so gewählt werden, dass sie orthonormal zu den bestehenden Spalten sind (Basisergänzung)[cite: 383].
+\end{itemize}
+
+\textbf{Alternativer Weg für $U$:} \\
+Man kann $U$ auch als Eigenvektoren von $A A^T$ berechnen[cite: 307]. Dabei muss jedoch darauf geachtet werden, dass die Vorzeichen mit $V$ kompatibel sind.

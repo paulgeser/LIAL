@@ -1,3 +1,71 @@
 \chapter{Orthogonale Abbildungen und Homogene Koordinaten}
 
-Kommt bald...
+\section{Orthogonale Abbildungen}
+
+\textbf{Definition} \\
+Eine lineare Abbildung $A$ heisst \textbf{orthogonal}, wenn sie längentreu und winkeltreu ist. Das bedeutet, geometrische Formen werden zwar gedreht oder gespiegelt, aber nicht verzerrt oder skaliert.
+
+\textbf{Eigenschaften}
+\begin{itemize}
+	\item \textbf{Inverse:} Die Inverse ist gleich der Transponierten ($A^{-1} = A^T$).
+	\item \textbf{Determinante:} $\det(A) = \pm 1$.
+	\begin{itemize}
+		\item $\det(A) = 1$: Drehung (Orientierung bleibt erhalten).
+		\item $\det(A) = -1$: Spiegelung (Orientierung wird umgekehrt).
+	\end{itemize}
+	\item \textbf{Normierung:} Die Spalten- und Zeilenvektoren haben die Länge 1 und stehen paarweise senkrecht aufeinander.
+	\item \textbf{Skalarprodukt:} Das Skalarprodukt bleibt erhalten: $(Ax) \cdot (Ay) = x \cdot y$.
+\end{itemize}
+
+\section{Homogene Koordinaten (2D)}
+
+\textbf{Konzept} \\
+Die klassische Matrix-Vektor-Multiplikation $Ax$ kann nur lineare Abbildungen (Drehung, Skalierung) darstellen, aber keine Verschiebungen (Translationen), da der Nullvektor bei linearen Abbildungen immer auf sich selbst abgebildet werden muss.
+Um Translationen ebenfalls als Matrix-Multiplikation schreiben zu können, erweitert man die Koordinaten um eine Dimension (homogene Komponente, meist 1).
+$$ v = \begin{pmatrix} x \\ y \end{pmatrix} \quad \xrightarrow{\text{homogen}} \quad v_h = \begin{pmatrix} x \\ y \\ 1 \end{pmatrix} $$
+
+\textbf{2D-Transformationen in homogenen Koordinaten ($3 \times 3$ Matrizen)}
+
+\begin{itemize}
+	\item \textbf{Rotation (um Ursprung):}
+	$$ R = \begin{pmatrix} \cos \varphi & -\sin \varphi & 0 \\ \sin \varphi & \cos \varphi & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+	
+	\item \textbf{Translation (Verschiebung um $u, v$):}
+	$$ T = \begin{pmatrix} 1 & 0 & u \\ 0 & 1 & v \\ 0 & 0 & 1 \end{pmatrix} $$
+\end{itemize}
+
+\section{Zusammensetzung von Abbildungen}
+
+Mehrere Transformationen werden durch Multiplikation der entsprechenden Matrizen verkettet. Da die Matrixmultiplikation \textbf{nicht kommutativ} ist, ist die Reihenfolge entscheidend.
+
+\textbf{Reihenfolge:}
+Die Abbildung, die zuerst auf den Vektor wirken soll, steht rechts (am nächsten beim Vektor).
+$$ v_{neu} = \underbrace{M_n \cdot \dots \cdot M_2 \cdot M_1}_{\text{Gesamtmatrix } M} \cdot v_{alt} $$
+
+\textbf{Beispiel: Drehung um einen beliebigen Punkt $P$} \\
+Um ein Objekt um einen Punkt $P$ (statt um den Ursprung) zu drehen, sind drei Schritte nötig:
+\begin{enumerate}
+	\item Verschiebung von $P$ in den Ursprung ($T^{-1}$).
+	\item Drehung um den Ursprung ($R$).
+	\item Rückverschiebung an die ursprüngliche Position ($T$).
+\end{enumerate}
+$$ M_{Gesamt} = T \cdot R \cdot T^{-1} $$
+
+\section{Homogene Koordinaten in 3D}
+
+Für den dreidimensionalen Raum werden Vektoren auf 4 Komponenten erweitert $(x, y, z, 1)^T$. Die Transformationsmatrizen haben die Grösse $4 \times 4$.
+
+\textbf{Translation (3D)}
+$$ T = \begin{pmatrix} 1 & 0 & 0 & u \\ 0 & 1 & 0 & v \\ 0 & 0 & 1 & w \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+
+\textbf{Rotationen (3D)}
+\begin{itemize}
+	\item \textbf{Um x-Achse:}
+	$$ R_x = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & \cos \varphi & -\sin \varphi & 0 \\ 0 & \sin \varphi & \cos \varphi & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+	
+	\item \textbf{Um y-Achse:}
+	$$ R_y = \begin{pmatrix} \cos \varphi & 0 & \sin \varphi & 0 \\ 0 & 1 & 0 & 0 \\ -\sin \varphi & 0 & \cos \varphi & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+	
+	\item \textbf{Um z-Achse:}
+	$$ R_z = \begin{pmatrix} \cos \varphi & -\sin \varphi & 0 & 0 \\ \sin \varphi & \cos \varphi & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 \end{pmatrix} $$
+\end{itemize}
