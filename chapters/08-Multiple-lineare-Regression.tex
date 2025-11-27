@@ -1,3 +1,72 @@
 \chapter{Multiple lineare Regression}
 
-Kommt bald...
+\section{Das Modell}
+
+\textbf{Definition} \\
+Bei der multiplen linearen Regression hängt die Zielgrösse $y$ von mehreren Einflussgrössen $x_1, \dots, x_n$ ab. Das Modell lautet:
+$$
+y = b_0 + b_1 x_1 + b_2 x_2 + \dots + b_n x_n + \epsilon
+$$
+Dabei ist $\epsilon$ der Fehlerterm (z. B. Messfehler).
+
+\textbf{Matrix-Schreibweise} \\
+Für $m$ Beobachtungen lassen sich die Daten in einer Matrix $X$ zusammenfassen. Die erste Spalte besteht aus Einsen (für den Achsenabschnitt $b_0$).
+$$
+y = X \cdot b + e
+$$
+\begin{itemize}
+	\item $X$: Datenmatrix ($m \times (n+1)$).
+	\item $y$: Vektor der beobachteten Zielwerte ($m \times 1$).
+	\item $b$: Vektor der gesuchten Koeffizienten ($b_0, \dots, b_n$).
+	\item $e$: Vektor der Fehler (Residuen).
+\end{itemize}
+
+\section{Lösung (Methode der kleinsten Quadrate)}
+
+Gesucht ist der Vektor $\hat{b}$, der die Summe der quadratischen Abweichungen ($e^T e$) minimiert. Dies führt analog zur einfachen Regression auf die \textbf{Normalengleichung}:
+
+$$
+X^T X \hat{b} = X^T y
+$$
+
+Falls die Spalten von $X$ linear unabhängig sind (keine Kollinearität der Einflussgrössen), ist $X^T X$ invertierbar und die Lösung lautet:
+$$
+\hat{b} = (X^T X)^{-1} X^T y
+$$
+
+\section{Wichtige Matrizen}
+
+In der multiplen Regression spielen drei spezielle Matrizen eine zentrale Rolle für die Analyse und Berechnung von Fehlern.
+
+\textbf{1. Projektionsmatrix $P$ (Hat-Matrix)} \\
+Sie projiziert den Vektor $y$ auf den Spaltenraum von $X$, also auf die Regressions-Hyperebene.
+$$ P = X(X^T X)^{-1} X^T $$
+$$ \hat{y} = P \cdot y $$
+Eigenschaften: Symmetrisch ($P^T = P$) und idempotent ($P^2 = P$).
+
+\textbf{2. Residualmatrix $Q$} \\
+Sie projiziert $y$ auf den Fehlerraum (senkrecht zum Spaltenraum). Damit lassen sich die Residuen direkt berechnen.
+$$ Q = I - P $$
+$$ e = Q \cdot y $$
+
+\textbf{3. Zentrierende Matrix $M$} \\
+Sie dient zur Berechnung der Abweichungen vom Mittelwert.
+$$ M = I - \frac{1}{m} \mathbf{1}\mathbf{1}^T $$
+$$ y - \bar{y} = M \cdot y $$
+
+\section{Güte des Modells ($R^2$)}
+
+Das Bestimmtheitsmass $R^2$ gibt an, welcher Anteil der Varianz der Zielgrösse durch das Modell erklärt wird.
+
+\textbf{Quadratsummen}
+\begin{itemize}
+	\item \textbf{SQT} (Total): $y^T M y$ (Gesamtvarianz)
+	\item \textbf{SQR} (Residual): $y^T Q y$ (Nicht erklärte Varianz / Fehler)
+	\item \textbf{SQE} (Erklärt): $SQT - SQR$
+\end{itemize}
+
+\textbf{Berechnung}
+$$
+R^2 = 1 - \frac{SQR}{SQT}
+$$
+Ein Wert von $R^2 = 1$ bedeutet eine perfekte Vorhersage, $R^2 = 0$ bedeutet, dass das Modell keinen Zusammenhang erklärt.

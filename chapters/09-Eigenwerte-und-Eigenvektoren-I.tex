@@ -1,5 +1,67 @@
 \chapter{Eigenwerte und Eigenvektoren}
 
-Sicher hinzufügen wie man einfach eigenwerte ablesen kann und auch eigenvektore
+*TODO: Sicher hinzufügen wie man einfach eigenwerte ablesen kann und auch eigenvektore*
 
+\section{Eigenwerte und Eigenvektoren}
 
+\textbf{Definition} \\
+Gegeben sei eine quadratische Matrix $A$. Ein Vektor $x \neq 0$ heisst \textbf{Eigenvektor} von $A$, wenn er durch Multiplikation mit $A$ nur skaliert wird (seine Richtung beibehält oder umkehrt). Der Skalierungsfaktor $\lambda$ heisst \textbf{Eigenwert}.
+$$
+A x = \lambda x
+$$
+bzw. umgeformt auf das homogene Gleichungssystem:
+$$
+(A - \lambda I) x = 0
+$$
+
+\textbf{Berechnung}
+\begin{enumerate}
+	\item \textbf{Eigenwerte bestimmen:} \\
+	Löse die charakteristische Gleichung. Dies ist ein Polynom $n$-ten Grades.
+	$$ \det(A - \lambda I) = 0 $$
+	Die Nullstellen dieses Polynoms sind die Eigenwerte $\lambda_i$.
+	
+	\item \textbf{Eigenvektoren bestimmen:} \\
+	Für jeden gefundenen Eigenwert $\lambda_i$ löst man das homogene lineare Gleichungssystem:
+	$$ (A - \lambda_i I) x = 0 $$
+	Jede nicht-triviale Lösung $x \neq 0$ ist ein Eigenvektor zu $\lambda_i$.
+\end{enumerate}
+
+\section{Eigenschaften der Eigenwerte}
+
+Zwischen den Eigenwerten und den Kennzahlen der Matrix bestehen folgende Zusammenhänge:
+
+\begin{itemize}
+	\item \textbf{Determinante:} Die Determinante entspricht dem Produkt der Eigenwerte.
+	$$ \det(A) = \prod_{i=1}^{n} \lambda_i = \lambda_1 \cdot \lambda_2 \cdot \dots \cdot \lambda_n $$
+	
+	\item \textbf{Spur (Trace):} Die Spur (Summe der Diagonalelemente) entspricht der Summe der Eigenwerte.
+	$$ \text{spur}(A) = \sum_{i=1}^{n} a_{ii} = \sum_{i=1}^{n} \lambda_i $$
+\end{itemize}
+
+\section{Symmetrische Matrizen}
+
+Eine reelle Matrix $A$ heisst symmetrisch, wenn $A = A^T$. Für solche Matrizen gelten spezielle, sehr nützliche Eigenschaften (Spektralsatz):
+\begin{itemize}
+	\item Alle Eigenwerte sind \textbf{reell}.
+	\item Eigenvektoren zu verschiedenen Eigenwerten sind \textbf{orthogonal} zueinander.
+	\item Es lässt sich immer eine Orthonormalbasis aus Eigenvektoren finden (die Eigenvektoren können auf Länge 1 normiert werden).
+\end{itemize}
+
+\section{Spektralzerlegung}
+
+Aufgrund der oben genannten Eigenschaften lassen sich symmetrische Matrizen zerlegen.
+
+\textbf{Matrix-Form} \\
+$$ A = V \Lambda V^T $$
+\begin{itemize}
+	\item $\Lambda$: Diagonalmatrix mit den Eigenwerten $\lambda_1, \dots, \lambda_n$.
+	\item $V$: Orthogonale Matrix ($V^{-1} = V^T$), deren Spalten die normierten Eigenvektoren $x_1, \dots, x_n$ sind.
+\end{itemize}
+
+\textbf{Summen-Form (Spektraldarstellung)} \\
+Die Matrix $A$ kann als Summe von Rang-1-Matrizen dargestellt werden, gewichtet mit den Eigenwerten:
+$$
+A = \lambda_1 x_1 x_1^T + \lambda_2 x_2 x_2^T + \dots + \lambda_n x_n x_n^T = \sum_{i=1}^{n} \lambda_i x_i x_i^T
+$$
+\textbf{Achtung:} Hierbei müssen die Eigenvektoren $x_i$ normiert sein (Länge 1).

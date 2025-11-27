@@ -1,3 +1,49 @@
 \chapter{Einfache lineare Regression}
 
-Kommt bald...
+\section{Die beste lineare Approximation}
+
+\textbf{Problemstellung} \\
+Gegeben sind Datenpunkte $(t_i, b_i)$. Gesucht ist eine Gerade $b = C + Dt$, die diese Punkte bestmöglich annähert.
+Das resultierende lineare Gleichungssystem $Ax = b$ ist in der Regel überbestimmt ($m > n$, mehr Gleichungen als Unbekannte) und besitzt keine exakte Lösung, da der Vektor $b$ nicht exakt im Spaltenraum $C(A)$ liegt.
+
+\textbf{Lösungsansatz (Methode der kleinsten Quadrate)} \\
+Da der Fehler $e = b - Ax$ nicht Null sein kann, suchen wir ein $\hat{x}$, das die Länge des Fehlervektors $\|e\|$ (bzw. $\|e\|^2$) minimiert.
+Geometrisch betrachtet ist der Punkt $p = A\hat{x}$, der am nächsten zu $b$ liegt, die \textbf{orthogonale Projektion} von $b$ auf den Spaltenraum $C(A)$.
+
+\section{Orthogonale Projektion}
+
+\subsection{Projektion auf einen Vektor}
+Die Projektion eines Vektors $b$ auf einen Vektor $a$ ist gegeben durch:
+$$ p = \frac{a^T b}{a^T a} \cdot a $$
+Die zugehörige Projektionsmatrix $P$ lautet:
+$$ P = \frac{1}{a^T a} a a^T $$
+
+\subsection{Projektion auf einen Unterraum (Spaltenraum)}
+Die Projektion von $b$ auf den Spaltenraum einer Matrix $A$ liefert den Vektor $p = A\hat{x}$.
+Der Fehlervektor $e = b - p$ muss orthogonal zu allen Spalten von $A$ stehen. Daraus folgt die Bedingung $A^T e = 0$, was zu den \textbf{Normalengleichungen} führt:
+$$ A^T (b - A\hat{x}) = 0 \quad \implies \quad A^T A \hat{x} = A^T b $$
+
+\textbf{Lösung für $\hat{x}$:} \\
+Wenn die Spalten von $A$ linear unabhängig sind, ist $A^T A$ invertierbar und es gilt:
+$$ \hat{x} = (A^T A)^{-1} A^T b $$
+Die Projektionsmatrix $P$, die $b$ auf den Spaltenraum abbildet ($p = Pb$), ist:
+$$ P = A (A^T A)^{-1} A^T $$
+
+\section{Allgemeines Vorgehen bei der Regression}
+
+Um die Parameter $\hat{x} = \begin{pmatrix} \hat{C} \\ \hat{D} \end{pmatrix}$ für das Modell $b = C + Dt$ zu finden, geht man wie folgt vor:
+
+\begin{enumerate}
+	\item \textbf{Datenmatrix $A$ aufstellen:} \\
+	Die erste Spalte besteht aus Einsen (für den Achsenabschnitt $C$), die zweite aus den $t$-Werten.
+	$$ A = \begin{pmatrix} 1 & t_1 \\ 1 & t_2 \\ \vdots & \vdots \\ 1 & t_m \end{pmatrix} $$
+	
+	\item \textbf{Zielvektor $b$ aufstellen:} \\
+	Enthält die beobachteten Werte.
+	$$ b = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix} $$
+	
+	\item \textbf{Lösen:} \\
+	Berechne $\hat{x}$ mittels der Normalengleichung:
+	$$ \hat{x} = (A^T A)^{-1} A^T b $$
+	Der resultierende Vektor enthält die gesuchten Regressionskoeffizienten $\hat{C}$ und $\hat{D}$.
+\end{enumerate}
